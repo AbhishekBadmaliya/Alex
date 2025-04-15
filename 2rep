@@ -8,8 +8,8 @@ import {
   Image,
 } from '@react-pdf/renderer';
 
-// Replace this with your actual base64 logo string
-const logoBase64 = 'data:image/png;base64,INSERT_YOUR_BASE64_STRING_HERE';
+// Replace with base64 string of GSI logo
+const logoBase64 = 'data:image/png;base64,INSERT_YOUR_LOGO_HERE';
 
 const styles = StyleSheet.create({
   page: {
@@ -19,108 +19,125 @@ const styles = StyleSheet.create({
   },
   header: {
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 5,
+    fontSize: 10,
+    fontWeight: 'bold',
   },
   topRow: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5,
     justifyContent: 'space-between',
+    marginBottom: 5,
   },
-  logo: {
-    width: 50,
-    height: 50,
+  section: {
+    marginVertical: 2,
   },
-  titleBlock: {
-    flexGrow: 1,
-    textAlign: 'center',
-  },
-  row: {
-    flexDirection: 'row',
+  boldText: {
+    fontWeight: 'bold',
   },
   table: {
     display: 'table',
     width: 'auto',
-    marginVertical: 5,
     borderStyle: 'solid',
     borderWidth: 1,
     borderRightWidth: 0,
     borderBottomWidth: 0,
+    marginTop: 5,
   },
-  cell: {
-    borderRightWidth: 1,
-    borderBottomWidth: 1,
-    padding: 2,
+  tableRow: {
+    flexDirection: 'row',
+  },
+  tableCell: {
     flex: 1,
-    textAlign: 'center',
-  },
-  smallCell: {
-    flex: 0.5,
-    textAlign: 'center',
     borderRightWidth: 1,
     borderBottomWidth: 1,
     padding: 2,
+    textAlign: 'center',
   },
-  footer: {
+  note: {
     marginTop: 10,
+    fontSize: 6,
   },
 });
 
-const headers = [
-  'S. No.', 'FSP CODE', 'AREA', 'UNIT NO.', 'TARGET', 'PROGRESS', 'SHIFT', 'AVS', 'P', 'NPP',
-  'BS', 'AS', 'GL', 'DT', 'FISH', 'CX', 'RE', 'RD', 'TD', 'FC', 'AD', 'ADP', 'NON-T', 'NON-M', 'WASF', 'OT', 'WAIT'
+const tableHeaders = [
+  'Sl. No.', 'Date', 'Meter Drilled', 'Core Recovery', 'AGE Recovery', 'Shift Ref', 
+  'Reshell No. & Type', 'Bit No. & Size', 'Run Hours (MC)', 'Holiday'
 ];
 
-const MonthlyShiftAnalysisPdf = () => (
+const dataRows = [
+  ['1', '01/06/18', '—', '—', '—', '—', '—', '—', '—', 'Sunday'],
+  ['2', '02/06/18', '—', '—', '—', '—', '—', '—', '12 HRS', ''],
+  ['3', '03/06/18', '7.30', '7.30', '55.4%', 'NP', '09510-Double Tube', '228938-NNT', '2 HRS', ''],
+  ['4', '04/06/18', '24.60', '16.7', '91.9%', '1st', '09510-Double Tube', '228938-NNT', '12 HRS', ''],
+  ['5', '05/06/18', '27.00', '23.1', '98.5%', '2nd', '09510-Double Tube', '228938-NNT', '10 HRS', ''],
+  ['6', '06/06/18', '27.5', '25.0', '100.0%', '1st', '09510-Double Tube', '227307-NNT', '10 HRS', ''],
+  ['7', '07/06/18', '15.00', '15.0', '100.0%', '2nd', '09510-Double Tube', '230472-NNT', '8 HRS', ''],
+  ['8', '08/06/18', '20.00', '15.0', '100.0%', '1st', '09510-Double Tube', '230472-NNT', '10 HRS', ''],
+  ['9', '09/06/18', '—', '—', '—', 'NP', '—', '—', '—', 'Sunday'],
+  ['10', '10/06/18', '27.50', '23.6', '100.0%', '2nd', '09510-Double Tube', '230472-NNT', '8 HRS', ''],
+  ['Total', '', '148.90', '143.4', '94.0%', '', '', '', '', ''],
+];
+
+const FortnightDrillingReport = () => (
   <Document>
     <Page size="A4" style={styles.page}>
-      {/* Top Row with Logo and Title */}
+      {/* Header */}
+      <View style={styles.header}>
+        <Text>GEOLOGICAL SURVEY OF INDIA</Text>
+        <Text>ENGINEERING DIVISION, NR</Text>
+        <Text>FORTNIGHT DRILLING PROGRESS REPORT</Text>
+      </View>
+
+      {/* Period and Project Details */}
       <View style={styles.topRow}>
-        <Image style={styles.logo} src={logoBase64} />
-        <View style={styles.titleBlock}>
-          <Text>GEOLOGICAL SURVEY OF INDIA</Text>
-          <Text>ENGINEERING DIVISION</Text>
-          <Text>Monthly shift analysis of drilling Units</Text>
-          <Text>FSP Year : 2017-2018</Text>
-          <Text>MONTH : May</Text>
-          <Text>REGION : SOUTHERN REGION</Text>
-        </View>
-        <View style={{ width: 50 }} /> {/* Right spacing placeholder */}
+        <Text>Period: 01-Jun-2018 To 15-Jun-2018</Text>
+        <Text>Month: JUN-18</Text>
+      </View>
+
+      {/* Project info */}
+      <View style={styles.section}>
+        <Text>FSP CODE: MZAFGEM-MEP/NC/NR/SU-PHF/2018/21973</Text>
+        <Text>PROJECT: DELHI ARAVALI BELT</Text>
+        <Text>UNIT NO.: 14ME03062</Text>
+        <Text>MODEL: RD-30</Text>
+        <Text>MINERAL: COPPER</Text>
+        <Text>BORE HOLE NO.: HM5GE-19</Text>
+        <Text>AREA OF OPERATION: SOUTH OF GANGUTANA BLOCK, DISTT., MAHENDRAGARH (HARYANA)</Text>
+        <Text>STATE UNIT: SU-PHF</Text>
+        <Text>ANGLE(DEGREE): 45</Text>
+        <Text>BEARING: 345</Text>
+        <Text>ELEVATION(MTR): 297</Text>
+        <Text>REGION: NR</Text>
+      </View>
+
+      {/* Officers */}
+      <View style={styles.section}>
+        <Text>Officer In Charge: PREM CHAND NARANG - Junior Technical Assistant (Drilling)</Text>
+        <Text>Area In Charge: RAVI PRAKASH CHAUDHARY - Executive Engineer (NR)</Text>
       </View>
 
       {/* Table */}
       <View style={styles.table}>
-        <View style={styles.row}>
-          {headers.map((header, idx) => (
-            <Text key={idx} style={header.length > 10 ? styles.cell : styles.smallCell}>
-              {header}
-            </Text>
+        {/* Headers */}
+        <View style={styles.tableRow}>
+          {tableHeaders.map((header, idx) => (
+            <Text key={idx} style={styles.tableCell}>{header}</Text>
           ))}
         </View>
-        <View style={styles.row}>
-          {Array(headers.length).fill(0).map((_, idx) => (
-            <Text key={idx} style={headers[idx].length > 10 ? styles.cell : styles.smallCell}>
-              0
-            </Text>
-          ))}
-        </View>
+        {/* Data Rows */}
+        {dataRows.map((row, idx) => (
+          <View key={idx} style={styles.tableRow}>
+            {row.map((cell, cid) => (
+              <Text key={cid} style={styles.tableCell}>{cell}</Text>
+            ))}
+          </View>
+        ))}
       </View>
 
-      {/* Footer */}
-      <View style={styles.footer}>
-        <Text style={{ fontSize: 7 }}>
-          AVS/OS - Available shift/Operative shift, P - productive shift, NPP - Non-productive shift,
-          BS - Borehole Shifting, AS - Area Shifting, GL - Geophysical Logging, DT - Deviation Test,
-          FISH - Fishing, CX - Casing Extraction, RE - Reaming, RD - Redrilling, TD - Total Down,
-          FC - Forest Clearance, AD - Awaiting Deployment, NON-T - Non-availability of Trained personnel,
-          NON-M - Non availability of material, WASF - Washing, OT - Others, WAIT - Waiting
-        </Text>
-        <Text style={{ fontSize: 7, marginTop: 4 }}>
-          ** This is a computer-generated document. No signature is required. Print only if necessary. **
-        </Text>
-      </View>
+      {/* Notes */}
+      <Text style={styles.note}>NP = Non Productive, NNT = Bit Type, MC = Machine</Text>
     </Page>
   </Document>
 );
 
-export default MonthlyShiftAnalysisPdf;
+export default FortnightDrillingReport;
