@@ -1,0 +1,46 @@
+<View style={styles.table}>
+  {/* Header Row */}
+  <View style={styles.tableRow}>
+    <Text style={styles.tableCell}>Serial No.</Text>
+    <Text style={styles.tableCell}>Bore Hole No.</Text>
+
+    {/* Drilling Progress with Sub-columns */}
+    <View style={[styles.tableCell, { flex: 2 }]}>
+      <Text style={{ textAlign: 'center' }}>Drilling Progress</Text>
+      <View style={styles.tableRow}>
+        <Text style={[styles.tableSubCell]}>From (meter)</Text>
+        <Text style={[styles.tableSubCell]}>To (meter)</Text>
+      </View>
+    </View>
+
+    <Text style={styles.tableCell}>Total Drilling</Text>
+    <Text style={styles.tableCell}>Core Recovery</Text>
+    <Text style={styles.tableCell}>% Core Recovery</Text>
+  </View>
+
+  {/* Sample Data Row */}
+  <View style={styles.tableRow}>
+    <Text style={styles.tableCell}>1</Text>
+    <Text style={styles.tableCell}>BH-01</Text>
+
+    <View style={[styles.tableCell, { flex: 2, flexDirection: 'row' }]}>
+      <Text style={[styles.tableSubCell]}>120</Text>
+      <Text style={[styles.tableSubCell]}>135</Text>
+    </View>
+
+    <Text style={styles.tableCell}>15</Text>
+    <Text style={styles.tableCell}>14.5</Text>
+    <Text style={styles.tableCell}>96.6%</Text>
+  </View>
+</View>
+
+
+
+tableSubCell: {
+  flex: 1,
+  borderRightWidth: 1,
+  borderBottomWidth: 1,
+  padding: 2,
+  textAlign: 'center',
+},
+
