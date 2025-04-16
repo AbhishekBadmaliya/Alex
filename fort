@@ -1,0 +1,109 @@
+import React from 'react';
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet
+} from '@react-pdf/renderer';
+
+const styles = StyleSheet.create({
+  page: {
+    padding: 10,
+    fontSize: 7,
+    fontFamily: 'Helvetica'
+  },
+  header: {
+    textAlign: 'center',
+    marginBottom: 5,
+    fontSize: 8,
+    fontWeight: 'bold'
+  },
+  section: {
+    marginBottom: 2
+  },
+  table: {
+    display: 'table',
+    width: 'auto',
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderRightWidth: 0,
+    borderBottomWidth: 0,
+    marginTop: 5
+  },
+  tableRow: {
+    flexDirection: 'row'
+  },
+  tableCell: {
+    flex: 1,
+    borderRightWidth: 1,
+    borderBottomWidth: 1,
+    padding: 2,
+    textAlign: 'center'
+  },
+  cellHeader: {
+    fontWeight: 'bold'
+  }
+});
+
+const FortnightDrillingProgressReport = () => (
+  <Document>
+    <Page size="A4" style={styles.page}>
+      <View style={styles.header}>
+        <Text>GEOLOGICAL SURVEY OF INDIA</Text>
+        <Text>ENGINEERING DIVISION, NR</Text>
+        <Text>FORTNIGHT DRILLING PROGRESS REPORT</Text>
+      </View>
+
+      <View style={styles.section}>
+        <Text>Period: 01-Jun-2018 To 15-Jun-2018   |   Month: JUN-18</Text>
+        <Text>FSP CODE: MZAFGEM-MEP/NC/NR/SU-PHF/2018/21973</Text>
+        <Text>PROJECT: DELHI ARAVALI BELT</Text>
+        <Text>UNIT NO.: 14ME03062   |   MODEL: RD-30</Text>
+        <Text>MINERAL: COPPER</Text>
+        <Text>BORE HOLE NO.: HM5GE-19</Text>
+        <Text>AREA OF OPERATION: SOUTH OF GANGUTANA BLOCK, DISTT., MAHENDRAGARH (HARYANA)</Text>
+        <Text>STATE UNIT: SU-PHP   |   BEARING: 345</Text>
+        <Text>REGION: NR   |   ELEVATION(MTR): 297   |   ANGLE(DEGREE): 45</Text>
+        <Text>Officer In Charge: PREM CHAND NARANG (JTA)   |   Area In Charge: RAVI PRAKASH CHAUDHARY (EE)</Text>
+      </View>
+
+      {/* Table */}
+      <View style={styles.table}>
+        {/* Table Header */}
+        <View style={styles.tableRow}>
+          <Text style={[styles.tableCell, styles.cellHeader]}>Sl. No.</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>DATE</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>FROM</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>TO</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>TOTAL</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>Core Recovery</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>AGE Recovery</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>SHIFT REF</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>RESHELL No & TYPE</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>BIT No. & SIZE</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>RUN HOURS (MC)</Text>
+          <Text style={[styles.tableCell, styles.cellHeader]}>Holiday</Text>
+        </View>
+
+        {/* Sample Row */}
+        <View style={styles.tableRow}>
+          <Text style={styles.tableCell}>1</Text>
+          <Text style={styles.tableCell}>03/06/18</Text>
+          <Text style={styles.tableCell}>0</Text>
+          <Text style={styles.tableCell}>7.30</Text>
+          <Text style={styles.tableCell}>7.30</Text>
+          <Text style={styles.tableCell}>55.4%</Text>
+          <Text style={styles.tableCell}>NP</Text>
+          <Text style={styles.tableCell}>09510-Double Tube</Text>
+          <Text style={styles.tableCell}>228938-NNT</Text>
+          <Text style={styles.tableCell}>2 HRS</Text>
+          <Text style={styles.tableCell}>Sunday</Text>
+        </View>
+        {/* Add more rows as needed */}
+      </View>
+    </Page>
+  </Document>
+);
+
+export default FortnightDrillingProgressReport;
